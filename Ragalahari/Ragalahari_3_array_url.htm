@@ -1,0 +1,173 @@
+<html>
+<head>
+
+	<!-- <script src="E:\College\SEM 4\WD\Website - Copy\jquery.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+	<script>
+	
+	var hid=0;
+	var t=0;
+	
+	$(document).ready(function()
+		{	
+		
+		//testing the scrolling division
+		
+		$(window).scroll(function(){
+          $("section.main").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow" );
+        });
+		
+		
+			$('#download').click(function()
+			{
+				$('.save').click();
+				$('.img').click();
+				
+			});		
+		}); 
+		
+		function load1()
+		{
+		
+			var mainurl = document.getElementById('iurl').value;
+			var myarray = mainurl.split(" ");
+		
+			var bu;
+			var bu1;
+			var au; 
+			var au1;
+			
+			var s = document.getElementById('s').value;
+			var e = document.getElementById('e').value;
+		
+		
+			for(var j=0;j<=myarray.length;j++)
+			{
+			
+				bu = myarray[j];
+				bu1 = myarray[j];
+				 
+				au = bu.replace("1t.jpg","");
+				au = au.replace("szcdn","szcdn1");
+				
+				au1 = bu1.replace("1t.jpg","");
+				
+				for(var i=s;i<=e;i++)
+				{
+					//$('body').append("<b id='"+t+""+i+"'>"+i+"</b><a id='"+t+""+i+"' class='save' href='"+au+""+i+".jpg' download><img onerror='hid=this.id; hidefunction(hid);' class='save' id='"+t+""+i+"' src='"+au1+""+i+"t.jpg' height='300px' width='200px'></a>");
+					$('body').append("<b id='"+t+""+i+"'>"+i+"</b><img onerror='hid=this.id; hidefunction(hid);' onclick='vfinallist=this.src; finallist(vfinallist);' class='save' id='"+t+""+i+"' src='"+au+""+i+"t.jpg' height='300px' width='200px'>");
+					
+				}
+				
+				t=t+1;
+				
+			}
+			
+			
+		}
+		
+		function removei(uid)
+		{
+			$('img').filter('#'+uid+'').remove();
+		}
+		
+		function hidefunction(hid)
+		{
+			$('img').filter('#'+hid+'').remove();
+			$('b').filter('#'+hid+'').remove();
+			$('a').filter('#'+hid+'').remove();
+			
+		}
+	
+		function finallist(vfinallist)
+		{
+			vfinallist = vfinallist.replace("t.jpg",".jpg <br>");
+			$("#inputTextToSave").append(vfinallist);
+		}
+	</script>
+	
+</head>
+<body>
+	
+<script type="text/javascript">
+ 
+function saveTextAsFile()
+{
+    var textToSave = document.getElementById("inputTextToSave").value;
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+ 
+    downloadLink.click();
+}
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+function loadFileAsText()
+{
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+ 
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+}
+ 
+</script>
+
+	
+	<section class="main" style="width:100%; position:relative;">
+	
+	<div id="mainsection"><input type="text" id="iurl" placeholder="Copy and Paste Image Url Here" style="width:65%;" required>
+	<input type="text" id="s" placeholder="Starting Index" style="width:90px;" required>
+	<input type="text" id="e" placeholder="Ending Index" style="width:90px;" required>
+	
+	<button onclick="load1();"> Load Images </button>
+	
+	<button id="download"> Download All Images </button>
+	
+	<br><br>
+	</div>
+	
+	</section>
+	
+	<!-- working with file code -->
+	
+	<table>
+    <tr><td>Text to Save:</td></tr>
+    <tr>
+        <td colspan="3">
+            <textarea id="inputTextToSave" style="height:100px; width:200%; overflow:scroll;"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Filename to Save As:</td>
+        <td><input id="inputFileNameToSaveAs" value="UrlFinalList" disabled></input></td>
+        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+    </tr>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button><td>
+    </tr>
+	</table>
+	
+	<br><br>
+</body>
+</html>

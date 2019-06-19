@@ -1,0 +1,60 @@
+<html>
+<head>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+	<script>
+	
+		$(document).ready(function()
+		{	
+			$('#download').click(function()
+			{
+				$('a').click();
+				$('img').click();
+			});		
+		});
+		
+		function load1()
+		{
+			var bu = document.getElementById('iurl').value;
+			
+			au = bu.replace("1.jpg","");
+			
+			var au; 
+			var s = document.getElementById('s').value;
+			var e = document.getElementById('e').value;
+		
+		
+			for(var i=s;i<=e;i++)
+			{
+				//$('body').append(""+i+"<a id='save' href='"+au+""+i+".jpg' download><img src='"+au+""+i+".jpg' height='300px' width='200px'></a>");
+				$('body').append("<b>"+i+"</b><img id='"+i+"' src='"+au+""+i+".jpg' height='300px' width='200px' onclick='var uid=this.id; removei(uid);'>");
+			}
+		}
+		
+		function removei(uid)
+		{
+			$('img').filter('#'+uid+'').remove();
+		}
+		
+		function removeall()
+		{
+			$('*').filter('img').remove();
+			$('*').filter('b').remove();
+		}
+	</script>
+	
+</head>
+<body>
+	<input type="text" id="iurl" placeholder="Copy and Paste Image Url Here" style="width:65%;" required>
+	<input type="text" id="s" placeholder="Starting Index" style="width:90px;" required>
+	<input type="text" id="e" placeholder="Ending Index" style="width:90px;" required>
+	
+	<button onclick="load1();"> Load Images </button>
+	
+	<!-- <button id="download"> Download Images </button> -->
+	
+	<button onclick="removeall();"> Remove All </button><hr>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<html>
+<head>
+
+	<!-- <script src="E:\College\SEM 4\WD\Website - Copy\jquery.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+	<style>
+		
+		span
+		{
+			background:white;
+			float:right;
+			font-weight:bold;
+			margin-right:20px;
+		}
+	
+	</style>
+	
+	<script>
+	
+	var hid=0;
+	var t=0;
+	var status;
+	
+	$(document).ready(function()
+		{	
+		
+		//testing the scrolling division
+		
+		$(window).scroll(function(){
+          $("section.main").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow" );
+        });
+		
+		
+			$('#download').click(function()
+			{
+				$('.save').click();
+				$('.img').click();
+				
+			});		
+		}); 
+		
+		function load1()
+		{
+			var bu = document.getElementById('iurl').value;
+			var bu1 = document.getElementById('iurl').value;
+			var au; 
+			var au1;
+			
+			au = bu.replace("1t.jpg","");
+			au = au.replace("szcdn","szcdn1");
+			
+			au1 = bu1.replace("1t.jpg","");
+			
+			var s = document.getElementById('s').value;
+			var e = document.getElementById('e').value;
+		
+		
+			for(var i=s;i<=e;i++)
+			{
+				$('body').append("<b id='"+t+""+i+"'>"+i+"</b><a id='"+t+""+i+"' class='save' href='"+au+""+i+".jpg' download><img onerror='hid=this.id; hidefunction(hid);' class='save' id='"+t+""+i+"' src='"+au1+""+i+"t.jpg' height='300px' width='200px'></a>");
+				//$('body').append("<img id='"+i+"' onclick='var uid=this.id; removei(uid);' src='https://d30y9cdsu7xlg0.cloudfront.net/png/52944-200.png' height='25px' width='25px'><a class='save' href='"+au+""+i+".jpg' download><img class='save' id='"+i+"' src='"+au1+""+i+"t.jpg' height='300px' width='200px'></a>");
+				//$('body').append("<b>"+i+"</b><img id='"+i+"' src='"+au+""+i+".jpg' height='300px' width='200px' onclick='var uid=this.id; removei(uid);'>");
+			}
+			
+			t=t+1;
+		}
+		
+		function removei(uid)
+		{
+			$('img').filter('#'+uid+'').remove();
+		}
+		
+		function hidefunction(hid)
+		{
+			$('img').filter('#'+hid+'').remove();
+			$('b').filter('#'+hid+'').remove();
+			$('a').filter('#'+hid+'').remove();
+			
+			status++;
+			$('span').text(status);
+			
+		}
+		
+		/*function removeall()
+		{
+			$('*').filter('img').remove();
+			$('*').filter('b').remove();
+		}*/
+			
+	</script>
+	
+</head>
+<body>
+	
+	<section class="main" style="width:100%; position:absolute;">
+	
+	<div id="mainsection"><input type="text" id="iurl" placeholder="Copy and Paste Image Url Here" style="width:65%;" required>
+	<input type="text" id="s" placeholder="Starting Index" style="width:90px;" required>
+	<input type="text" id="e" placeholder="Ending Index" style="width:90px;" required>
+	
+	<button onclick="load1();"> Load Images </button>
+	
+	<button id="download"> Download All Images </button><hr>
+	</div>
+	
+	<!-- <button onclick="removeall();"> Remove All </button><hr> -->
+	
+	<center>
+	<button onclick="$('object').attr('data','http://www.ragalahari.com/').show();"> Ragalahari </button> | 
+	<button onclick="$('object').attr('data','http://www.ragalahari.com/actress/starzone.aspx').show();"> Starzone </button> | 
+	<button onclick="$('object').attr('data','http://www.ragalahari.com/photosession/starzone.aspx').show();"> Exclusive Shoots </button> | 
+	<button onclick="$('object').attr('data','http://www.ragalahari.com/freshface/starzone.aspx').show();"> Fresh Faces </button> | 
+	<button onclick="$('object').fadeToggle();"> Show/Hide </button>
+	
+	<span class="status"> </span> 
+	
+	</center>
+	<hr>
+	
+	<object hidden data="" height="700px" width="100%">
+	
+	</section>
+	
+</body>
+</html>
