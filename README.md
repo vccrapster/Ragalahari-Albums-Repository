@@ -47,6 +47,7 @@ Step 5 : Open the file according to your requirement as shown below and you will
 | Ragalahari_3_array.htm | Use if you want to load thumbnail of multiple URLS | https://szcdn.ragalahari.com/xxxx/xxxx1t.jpg`give space here` https://szcdn.ragalahari.com/xxxx/xxxx1t.jpg `All the URLS must be white space seperated` |
 | Ragalahari_3_array_url.htm | Use if you want to load thumbnail from multiple URLS and save the URlS of the pictures into file when you click on images | https://szcdn.ragalahari.com/xxxx/xxxx1t.jpg`give space here` https://szcdn.ragalahari.com/xxxx/xxxx1t.jpg `All the URLS must be white space seperated`  |
 | Ragalahari_3_array_urlload.htm | Use if you want to load thumbnail or images from URLS created from `Ragalahari_3_array_url.htm` file | URLS created from `Ragalahari_3_array_url.htm` file |
+| Ragalahari_3_array_file.htm | Use if you want to load URLS from the file in which all the URLS is saved with comma separated | File or URL which is comma separated. |
 
 Step 6 : Choose file according to your requirement and you will see interface on your browser where you need to enter the following :
 1. URL[s] of you image
